@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
             .subscribe((res: any) => {
                     console.log(res);
                     localStorage.setItem('authToken', res.authToken);
+                    this.config.authToken  = res.authToken;
                     this.showSpinner = false;
                     this.router.navigate(['/questionnaires']);
                 },

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigService {
-    public apiUrl = 'http://apiural.com/api/';
+    public apiUrl = 'http://api.appsuralchem.ru/api/';
     public authToken = localStorage.getItem('authToken');
   constructor() { }
 }

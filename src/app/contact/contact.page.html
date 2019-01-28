@@ -24,12 +24,12 @@
         </div>
         <div class="input-field col s12">
           <input id="fullName" type="text" class="validate"
-                 [formControl]="fullName" (blur)="saveFullName()" required>
+                 [formControl]="fullName" (focus)="validatePost()" (blur)="saveFullName()" required>
           <label for="fullName">ФИО</label>
         </div>
         <div class="input-field col s12" *ngIf="numbers.length > 0">
           <ul class="collection">
-            <li class="collection-item" *ngFor="let number of numbers">{{number}}</li>
+            <li class="collection-item" *ngFor="let number of numbers">+7 {{number}}</li>
           </ul>
         </div>
         <div class="input-field col s12">
@@ -64,6 +64,9 @@
         </div>
       </div>
     </form>
+    <div class="center-align" style="    padding-top: 10%;">
+      <a class="waves-effect btn blue" (click)="moveNext()">Далее</a>
+    </div>
   </div>
 
 </ion-content>

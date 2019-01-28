@@ -91,5 +91,11 @@
                 </div>
             </div>
         </form>
+        <div class="center-align">
+            <button class="waves-effect btn blue" [disabled]="parent_company.invalid || !currentProfile || !currentBranch ||
+            !currentCrop || !currentCategory ||
+             address.invalid || area.invalid || !currentProfile" (click)="moveNext()">Далее
+            </button>
+        </div>
     </div>
 </ion-content>

@@ -1,5 +1,7 @@
 {
   "name": "appUralChem",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

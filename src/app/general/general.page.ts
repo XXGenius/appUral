@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ApiService} from '../service/api.service';
 import {ContainerService} from '../service/container.service';
 import * as Materialize from 'angular2-materialize';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-general',
-  templateUrl: './general.page.html',
-  styleUrls: ['./general.page.scss'],
+    selector: 'app-general',
+    templateUrl: './general.page.html',
+    styleUrls: ['./general.page.scss'],
 })
 export class GeneralPage implements OnInit {
 
-    currentProfile: string;
-    currentCrop: string;
-    currentCategory: string;
-    currentBranch: string;
+    currentProfile: number;
+    currentCrop: number;
+    currentCategory: number;
+    currentBranch: number;
     currentCompany: string;
     profiles: any;
     crops: any;
@@ -34,40 +35,17 @@ export class GeneralPage implements OnInit {
     autocompleteInit = {};
 
 
-    constructor(private apiService: ApiService, private container: ContainerService) {
+    constructor(private router: Router,
+                private apiService: ApiService,
+                private container: ContainerService) {
         this.getProfiles();
         this.getCategory();
         this.getCompanies();
 
     }
 
-    loadData() {
-        if (this.container.general.profile_id) {
-            this.currentCrop = this.container.general.crop_id;
-            this.currentBranch = this.container.general.branch_id;
-            this.currentProfile = this.container.general.profile_id;
-            this.getCrop();
-            this.getBranch();
-        }
-        if (this.container.general.category_id) {
-            this.currentCategory = this.container.general.category_id;
-        }
-        if (this.container.date) {
-            this.date = this.container.date;
-
-        } else {
-            this.container.date = this.date;
-        }
-        this.area.setValue(this.container.area);
-        this.address.setValue(this.container.address);
-        this.parent_company.setValue(this.container.parentCompany);
-        if (this.container.general.company_id) {
-            for (let i = 0; i < this.companies.length; i++) {
-                if (this.companies[i].id === this.container.general.company_id) {
-                    this.company.setValue(this.companies[i].name);
-                }
-            }
-        }
+    back() {
+        this.router.navigate(['/questionnaires']);
     }
 
     saveDate() {
@@ -100,6 +78,7 @@ export class GeneralPage implements OnInit {
     }
 
     getCompanyId() {
+        this.container.client = this.company.value;
         for (let i = 0; i < this.companies.length; i++) {
             if (this.companies[i].name === this.company.value) {
                 this.container.general.company_id = this.companies[i].id;
@@ -112,7 +91,6 @@ export class GeneralPage implements OnInit {
             .subscribe((res) => {
                 this.companies = res;
                 this.initAuto();
-                this.loadData();
             });
     }
 
@@ -177,5 +155,16 @@ export class GeneralPage implements OnInit {
     ngOnInit() {
     }
 
+    moveNext() {
+        this.apiService.createGeneral(this.currentCategory, this.container.general.company_id,
+            this.currentProfile, this.currentCrop, this.currentBranch)
+            .subscribe((res: any) => {
+                console.log(res);
+                this.container.branch_id = this.currentBranch;
+                this.container.general_id = res.id;
+                this.router.navigate(['/contact']);
+            });
+
+    }
 
 }

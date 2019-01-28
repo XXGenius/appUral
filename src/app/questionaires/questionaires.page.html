@@ -3,32 +3,31 @@
         <ion-grid style="width: 100%;margin: 0">
             <ion-row>
                 <ion-col class="align-content-lg-start" (click)="logout()">
-                    Выход
+                    <a class="waves-effect btn blue"><i class="Tiny material-icons">rotate_left</i></a>
                 </ion-col>
                 <ion-col>
 
                 </ion-col>
-                <ion-col (click)="create()">
+                <ion-col (click)="create()" class="right-align">
                     <a class="waves-effect btn blue"><i class="Tiny material-icons">add</i></a>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
     <ion-list>
-        <ion-item>
+        <ion-item *ngFor="let questionaire of questionaires" (click)="questionnaireDetails(questionaire.id)">
             <ion-grid style="width: 100%;margin: 0">
                 <ion-row>
-                    <ion-col class="align-content-lg-start">
-                        0
+                    <ion-col class="align-content-lg-start" size="1">
+                       {{questionaire.id}}
                     </ion-col>
-                    <ion-col>
-                        УралХим
+                    <ion-col size="5">
+                        {{questionaire.client}}
                     </ion-col>
-                    <ion-col>
-                        05.12.2018
+                    <ion-col style="font-size: 3vw;">
+                        {{questionaire.created_at}}
                     </ion-col>
                 </ion-row>
             </ion-grid>

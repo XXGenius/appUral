@@ -27,6 +27,7 @@ import {MaterializeModule} from 'angular2-materialize';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+
     ],
     providers: [
         StatusBar,
