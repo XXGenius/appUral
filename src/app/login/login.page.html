@@ -1,0 +1,57 @@
+<ion-content>
+    <div class="parent">
+        <div class="logo">
+            <div style="height: 30px;padding-top: 35%;padding-bottom: 35%;" class="center-align">
+                <img height="100%" src="./assets/imgs/logo-icon.png" alt="">
+                <img height="100%;" style="padding-left: 20px" src="./assets/imgs/logo-text.png" alt="">
+            </div>
+        </div>
+        <div class="block">
+            <div>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate" autocomplete="off"
+                                       pattern="{{emailPattern}}" [formControl]="email" required (focus)="focusInput()">
+                                <label for="email">Электронная почта</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="password" type="password" class="validate" autocomplete="off"
+                                       [formControl]="password" required (focus)="focusInput()">
+                                <label for="password">Пароль</label>
+                            </div>
+                            <div class="input-field col s12" *ngIf="error">
+                                <div class="center-align">
+                                    <div style="color: red; font-size: 12px">
+                                        {{error}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="center-align">
+                                <div class="input-field col s12">
+                                    <button class="waves-effect waves-light btn" *ngIf="!showSpinner" (click)="login()"
+                                            [disabled]="email.invalid || password.invalid">Войти
+                                    </button>
+                                </div>
+                                <div class="preloader-wrapper big active" *ngIf="showSpinner">
+                                    <div class="spinner-layer spinner-blue-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid style="width: 100%;margin: 0">
+      <ion-row>
+        <ion-col class="align-content-lg-start" (click)="back()">
+          <a class="waves-effect btn blue"><i class="material-icons prefix">arrow_back</i></a>
+        </ion-col>
+        <ion-col class="right-align">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <select [(ngModel)]="currentPost" name="currentPost" (ngModelChange)="changePost($event)"
+                  id="profile" materialize="material_select" [materializeSelectOptions]="posts">
+            <option value="" disabled selected>Цель переговоров</option>
+            <option *ngFor="let post of posts" [value]="post.value">{{post.name}}</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <input id="fullName" type="text" class="validate"
+                 [formControl]="description" required>
+          <label for="fullName">Краткое содержание переговоров</label>
+        </div>
+        <div class="input-field col s12">
+          <select [(ngModel)]="currentPost" name="currentPost" (ngModelChange)="changePost($event)"
+                  id="products" materialize="material_select" [materializeSelectOptions]="posts">
+            <option value="" disabled selected>Продукты</option>
+            <option *ngFor="let post of posts" [value]="post.value">{{post.name}}</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select [(ngModel)]="currentPost" name="currentPost" (ngModelChange)="changePost($event)"
+                  id="method" materialize="material_select" [materializeSelectOptions]="posts">
+            <option value="" disabled selected>Способ закупки</option>
+            <option *ngFor="let post of posts" [value]="post.value">{{post.name}}</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select [(ngModel)]="currentPost" name="currentPost" (ngModelChange)="changePost($event)"
+                  id="greate" materialize="material_select" [materializeSelectOptions]="posts">
+            <option value="" disabled selected>Довольны качеством обслуживания</option>
+            <option *ngFor="let post of posts" [value]="post.value">{{post.name}}</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select [(ngModel)]="currentPost" name="currentPost" (ngModelChange)="changePost($event)"
+                  id="services" materialize="material_select" [materializeSelectOptions]="posts">
+            <option value="" disabled selected>Сервисы</option>
+            <option *ngFor="let post of posts" [value]="post.value">{{post.name}}</option>
+          </select>
+        </div>
+        <div class="file-field input-field">
+          <div>Загрузите одну или несколько фотографий</div>
+          <div class="waves-effect btn blue">
+            <i class="Tiny material-icons">add</i>
+            <input id="file" type="file" multiple>
+          </div>
+
+        </div>
+        <div class="center-align">
+          <div class="preloader-wrapper big active" *ngIf="showSpinner">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ion-content>

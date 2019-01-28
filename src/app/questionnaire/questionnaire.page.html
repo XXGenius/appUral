@@ -1,0 +1,157 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-grid style="width: 100%;margin: 0">
+            <ion-row>
+                <ion-col class="align-content-lg-start" (click)="back()">
+                    <a class="waves-effect btn blue"><i class="Tiny material-icons">rotate_left</i></a>
+                </ion-col>
+                <ion-col>
+
+                </ion-col>
+                <ion-col class="right-align">
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="container">
+        <table *ngIf="!showSpinner" class="striped space z-depth-5">
+            <thead>
+            <tr>
+                <th>Общее</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>ID</td>
+                <td>{{questionnaire.id}}</td>
+            </tr>
+            <tr>
+                <td>Дата проведения переговоров</td>
+                <td>{{questionnaire.date.date}}</td>
+            </tr>
+            <tr>
+                <td>Клиент</td>
+                <td>{{questionnaire.client}}</td>
+            </tr>
+            <tr>
+                <td>Адрес</td>
+                <td>{{questionnaire.address}}</td>
+            </tr>
+            <tr>
+                <td>Профиль</td>
+                <td>{{questionnaire.general.profile}}</td>
+            </tr>
+            <tr>
+                <td>Отрасль</td>
+                <td>{{questionnaire.general.branch}}</td>
+            </tr>
+            <tr>
+                <td>Культура</td>
+                <td>{{questionnaire.general.crop}}</td>
+            </tr>
+            <tr>
+                <td>Категория</td>
+                <td>{{questionnaire.general.category}}</td>
+            </tr>
+            <tr>
+                <td>Компания</td>
+                <td>{{questionnaire.general.company}}</td>
+            </tr>
+            <tr>
+                <td>Родительская компания</td>
+                <td>{{questionnaire.parent_company}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table *ngIf="!showSpinner" class="striped space z-depth-5">
+            <thead>
+            <tr>
+                <th>Контакт</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Должность</td>
+                <td>{{questionnaire.contact.post}}</td>
+            </tr>
+            <tr>
+                <td>ФИО</td>
+                <td>{{questionnaire.contact.fullname}}</td>
+            </tr>
+            <tr *ngFor="let number of questionnaire.contact.numbers">
+                <td>Номер телефона</td>
+                <td>{{number?.number}}</td>
+            </tr>
+            <tr *ngFor="let email of questionnaire.contact.emails">
+                <td>Электронная почта</td>
+                <td>{{email?.email}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table *ngIf="!showSpinner" class="striped space z-depth-5" style="margin-bottom: 10%;">
+            <thead>
+            <tr>
+                <th>Отчет</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Цель переговоров</td>
+                <td>{{questionnaire.report.goal}}</td>
+            </tr>
+            <tr>
+                <td>Краткое содержание переговоров</td>
+                <td>{{questionnaire.report.summary}}</td>
+            </tr>
+            <tr>
+                <td>Продукт</td>
+                <td>{{questionnaire.report.product}}</td>
+            </tr>
+            <tr>
+                <td>Объем в год</td>
+                <td>{{questionnaire.report.volume}}</td>
+            </tr>
+            <tr>
+                <td>Способ закупки</td>
+                <td>{{questionnaire.report.purchase_method}}</td>
+            </tr>
+            <tr>
+                <td>Наименование поставщика</td>
+                <td>{{questionnaire.report.supplier}}</td>
+            </tr>
+            <tr>
+                <td>Довольны ли качеством обслуживания</td>
+                <td *ngIf="questionnaire.report.satisfied">Да</td>
+                <td *ngIf="!questionnaire.report.satisfied">Нет</td>
+            </tr>
+            <tr>
+                <td>Комментарии</td>
+                <td>{{questionnaire.report.comment}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div *ngIf="showSpinner" class="center-align space">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ion-content>

@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid style="width: 100%;margin: 0">
+      <ion-row>
+        <ion-col class="align-content-lg-start" (click)="back()">
+          <a class="waves-effect btn blue"><i class="material-icons prefix">arrow_back</i></a>
+        </ion-col>
+        <ion-col class="right-align">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <select [(ngModel)]="currentPost" name="currentPost" (ngModelChange)="changePost($event)"
+                  id="profile" materialize="material_select" [materializeSelectOptions]="posts">
+            <option value="" disabled selected>Должность</option>
+            <option *ngFor="let post of posts" [value]="post.id">{{post.name}}</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <input id="fullName" type="text" class="validate"
+                 [formControl]="fullName" (blur)="saveFullName()" required>
+          <label for="fullName">ФИО</label>
+        </div>
+        <div class="input-field col s12" *ngIf="numbers.length > 0">
+          <ul class="collection">
+            <li class="collection-item" *ngFor="let number of numbers">{{number}}</li>
+          </ul>
+        </div>
+        <div class="input-field col s12">
+          <input style="width: 90%;" [formControl]="pnumber" id="icon_telephone" type='text' [textMask]="{mask: mask}" class="validate">
+          <label for="icon_telephone">Телефон без восьмерки</label>
+          <i class="material-icons prefix" (click)="addNumber()">add</i>
+        </div>
+        <div class="input-field col s12" *ngIf="emails.length > 0">
+          <ul class="collection">
+            <li class="collection-item" *ngFor="let email of emails">{{email}}</li>
+          </ul>
+        </div>
+        <div class="input-field col s12">
+          <input style="width: 90%;" [formControl]="email" id="icon_email" type="tel" class="validate">
+          <label for="icon_email">Электронная почта</label>
+          <i class="material-icons prefix" (click)="addEmail()">add</i>
+        </div>
+        <div class="center-align">
+          <div class="preloader-wrapper big active" *ngIf="showSpinner">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</ion-content>

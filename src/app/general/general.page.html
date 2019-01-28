@@ -1,0 +1,95 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-grid style="width: 100%;margin: 0">
+            <ion-row>
+                <ion-col class="align-content-lg-start" (click)="back()">
+                    <a class="waves-effect btn blue"><i class="material-icons prefix">arrow_back</i></a>
+                </ion-col>
+                <ion-col class="right-align">
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="date" type="text" [(ngModel)]="date" name="datepicker" materialize="pickadate"
+                           [materializeParams]="[{format:'dd/mm/yyyy'}]" (ngModelChange)="saveDate()"/>
+                    <label for="date">Дата проведения переговоров</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="company" type="text" class="validate"
+                           [formControl]="company" required materialize="autocomplete" autocomplete="off"
+                           [materializeParams]="[autocompleteInit]">
+                    <label for="company">Название хозяйства/компании</label>
+                </div>
+                <div class="input-field col s12">
+                    <ion-spinner *ngIf="loadProfiles"></ion-spinner>
+                    <select *ngIf="!loadProfiles" [(ngModel)]="currentProfile" name="currentProfile"
+                            (ngModelChange)="changeProfile($event)"
+                            id="profile" materialize="material_select" [materializeSelectOptions]="profiles">
+                        <option value="" disabled selected>Профиль</option>
+                        <option *ngFor="let profile of profiles" [value]="profile.id">{{profile.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select [(ngModel)]="currentBranch" name="currentBranch" (ngModelChange)="changeBranch($event)"
+                            id="branch"
+                            materialize="material_select" [materializeSelectOptions]="branches">
+                        <option value="" disabled selected>Отрасль</option>
+                        <option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select [(ngModel)]="currentCrop" name="currentCrop" (ngModelChange)="changeCrop($event)" id="crop"
+                            materialize="material_select" [materializeSelectOptions]="crops">
+                        <option value="" disabled selected>Культура</option>
+                        <option *ngFor="let crop of crops" [value]="crop.id">{{crop.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <ion-spinner *ngIf="loadCategory"></ion-spinner>
+                    <select *ngIf="!loadCategory" [(ngModel)]="currentCategory" name="currentCategory"
+                            (ngModelChange)="changeCategory($event)" id="category" materialize="material_select"
+                            [materializeSelectOptions]="categories">
+                        <option value="" disabled selected>Категория</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <input id="area" type="number" class="validate"
+                           [formControl]="area" (change)="saveArea()" required>
+                    <label for="area">Площадь</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="address" type="text" class="validate"
+                           [formControl]="address" (change)="saveAddress()" required>
+                    <label for="address">Адрес</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="parent" type="text" class="validate"
+                           [formControl]="parent_company" (change)="saveParentCompany()" required>
+                    <label for="parent">Входит в состав компании/холдинга</label>
+                </div>
+                <div class="center-align">
+                    <div class="preloader-wrapper big active" *ngIf="showSpinner">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ion-content>
