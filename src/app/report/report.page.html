@@ -2,8 +2,7 @@
     <ion-toolbar>
         <ion-grid style="width: 100%;margin: 0">
             <ion-row>
-                <ion-col class="align-content-lg-start" (click)="back()">
-                    <a class="waves-effect btn blue"><i class="material-icons prefix">arrow_back</i></a>
+                <ion-col class="align-content-lg-start" >
                 </ion-col>
                 <ion-col class="right-align">
                 </ion-col>
@@ -80,6 +79,17 @@
                     <input id="comment" type="text" class="validate"
                            [formControl]="comment" required>
                     <label for="comment">Комментарии</label>
+                </div>
+                <div class="input-field col s12">
+                    <div class="file-field input-field">
+                        <div class="btn blue">
+                            <i class="Tiny material-icons">add</i>
+                            <input (change)="chooseImage($event)" type="file" multiple>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Добавить фото. Не более 4-х.">
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

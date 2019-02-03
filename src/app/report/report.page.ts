@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import {ApiService} from '../service/api.service';
 import {ContainerService} from '../service/container.service';
 import {Router} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-report',
@@ -30,15 +31,33 @@ export class ReportPage implements OnInit {
     loadServices = false;
 
     reportId: any;
+    imageToShow: any;
+    files: any;
+    formData: FormData = new FormData();
 
     constructor(private apiService: ApiService,
                 private router: Router,
-                private container: ContainerService) {
+                private sanitizer: DomSanitizer,
+                private container: ContainerService,) {
         this.getGoals();
         this.getMethods();
         this.getProducts();
         this.getServices();
         console.log(this.container);
+    }
+
+    public sanitizeImage(url: string) {
+        return url ? this.sanitizer.bypassSecurityTrustStyle(`url('${url}')`) : url;
+    }
+
+    chooseImage(event) {
+        const target = event.target || event.srcElement;
+        this.files = target.files;
+        if (this.files) {
+            const files: FileList = this.files;
+            this.formData.append('file', files[0]);
+            console.log(files);
+        }
     }
 
     changeGoal() {
@@ -111,9 +130,17 @@ export class ReportPage implements OnInit {
             .subscribe((res: any) => {
                 console.log(res);
                 this.reportId = res.id;
+                this.createPhoto();
                 this.createServices();
             });
 
+    }
+
+    createPhoto() {
+        this.apiService.createPhoto(this.formData, this.reportId)
+            .subscribe((res) => {
+                console.log(res);
+            });
     }
 
     createServices() {

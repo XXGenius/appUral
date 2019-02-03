@@ -19,10 +19,17 @@ export class ApiService {
         console.log(this.config.authToken);
         this.headers = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            'Accept': 'multipart/form-data',
             'Access-Control-Allow-Origin': '*',
             'Authorization': this.config.authToken
         });
+    }
+
+    createPhoto(photo, report_id) {
+        return this.http.post(this.config.apiUrl + 'photo/create', {
+            photo: photo,
+            report_id: report_id
+        }, {headers: this.headers});
     }
 
     getQuestionnaires() {
@@ -40,7 +47,7 @@ export class ApiService {
     }
 
     getPosts() {
-        return this.http.get(this.config.apiUrl + 'post/get-all/', {headers: this.headers});
+        return this.http.get(this.config.apiUrl + 'post/get-all', {headers: this.headers});
     }
 
     getCompanies() {
