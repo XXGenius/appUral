@@ -19,7 +19,7 @@ export class ApiService {
         console.log(this.config.authToken);
         this.headers = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Accept': 'multipart/form-data',
+            'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Authorization': this.config.authToken
         });

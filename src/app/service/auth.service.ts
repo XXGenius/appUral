@@ -8,7 +8,7 @@ import {ConfigService} from './config.service';
 export class AuthService {
     headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Accept': 'multipart/form-data',
+        'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*'
     });
 
