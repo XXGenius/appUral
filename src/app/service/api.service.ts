@@ -44,11 +44,11 @@ export class ApiService {
     }
 
     getCompanies() {
-        return this.http.get(this.config.apiUrl + 'company/get-all/', {headers: this.headers});
+        return this.http.get(this.config.apiUrl + 'company/get-all', {headers: this.headers});
     }
 
     getCategories() {
-        return this.http.get(this.config.apiUrl + 'category/get-all/', {headers: this.headers});
+        return this.http.get(this.config.apiUrl + 'category/get-all', {headers: this.headers});
     }
 
     getBranches(profile_id) {
@@ -60,7 +60,7 @@ export class ApiService {
     }
 
     getGoals() {
-        return this.http.get(this.config.apiUrl + 'goal/get-all/', {headers: this.headers});
+        return this.http.get(this.config.apiUrl + 'goal/get-all', {headers: this.headers});
 
     }
 
@@ -69,7 +69,7 @@ export class ApiService {
     }
 
     getMethods() {
-        return this.http.get(this.config.apiUrl + 'purchase/get-all/', {headers: this.headers});
+        return this.http.get(this.config.apiUrl + 'purchase/get-all', {headers: this.headers});
     }
 
     getSuppliers(method_id) {
@@ -77,12 +77,12 @@ export class ApiService {
     }
 
     getServices() {
-        return this.http.get(this.config.apiUrl + 'service/get-all/', {headers: this.headers});
+        return this.http.get(this.config.apiUrl + 'service/get-all', {headers: this.headers});
     }
 
 
     createReport(summary, volume, satisfied, comment, goal_id, product_id, purchase_method_id, supplier_id) {
-        return this.http.post(this.config.apiUrl + 'report/create/', {
+        return this.http.post(this.config.apiUrl + 'report/create', {
             summary: summary,
             volume: volume,
             satisfied: satisfied,
@@ -95,7 +95,7 @@ export class ApiService {
     }
 
     createGeneral(category_id, company_id, profile_id, crop_id, branch_id) {
-        return this.http.post(this.config.apiUrl + 'general/create/', {
+        return this.http.post(this.config.apiUrl + 'general/create', {
             category_id: category_id,
             company_id: company_id,
             profile_id: profile_id,
@@ -105,35 +105,35 @@ export class ApiService {
     }
 
     createContact(fullname, post_id) {
-        return this.http.post(this.config.apiUrl + 'contact/create/', {
+        return this.http.post(this.config.apiUrl + 'contact/create', {
             fullname: fullname,
             post_id: post_id
         }, {headers: this.headers});
     }
 
     createNumber(number, contact_id) {
-        return this.http.post(this.config.apiUrl + 'number/create/', {
+        return this.http.post(this.config.apiUrl + 'number/create', {
             number: number,
             contact_id: contact_id
         }, {headers: this.headers});
     }
 
     createEmail(email, contact_id) {
-        return this.http.post(this.config.apiUrl + 'email/create/', {
+        return this.http.post(this.config.apiUrl + 'email/create', {
             email: email,
             contact_id: contact_id
         }, {headers: this.headers});
     }
 
     createServices(service_id, report_id) {
-        return this.http.post(this.config.apiUrl + 'service-report/create/', {
+        return this.http.post(this.config.apiUrl + 'service-report/create', {
             service_id: service_id,
             report_id: report_id
         }, {headers: this.headers});
     }
 
     createQuestionnaire(client, area, address, parent_company, contact_id, general_id, report_id, branch_id) {
-        return this.http.post(this.config.apiUrl + 'questionnaire/create/', {
+        return this.http.post(this.config.apiUrl + 'questionnaire/create', {
             client: client,
             area: area,
             address: address,
